@@ -14,10 +14,11 @@ $(TARGET) : $(OBJECTS)
 	echo "	$(CC) -c $(CPPFLAGS) $< -o $*.o" >> $@;	\
 	rm -f $@.$$$$
 
-%.d : %.cpp
-	@$(CC) -MM $(CPPFLAGS) $< > $@
+#%.d : %.cpp
+#	@$(CC) -MM $(CPPFLAGS) $< > $@
 
 %.o : %.cpp
+	@echo "====Generate .d files===="
 	$(CC) -c $(CPPFLAGS) $< -o $@
 
 ifneq ($(MAKECMDGOALS), clean)

@@ -34,9 +34,9 @@ int cmp(const EVENT &e1, const EVENT &e2)
 int solve()
 {
 	int i, time, d, flag;
-	memset(di, 0, sizeof(di));
 	d = 0;
 	time = T;
+	memset(di, 0, sizeof(di));
 	while (R > 0) {
 		flag = 0;
 		while (di[d] < 2 * Q) {
@@ -51,10 +51,7 @@ int solve()
 					}
 				}
 				if (flag == 1) {
-					d = 1 - d;
-					R--;
 					time += L;
-					di[d]++;
 					break;
 				}else {
 					time = event[d][di[d]].t;
@@ -66,6 +63,8 @@ int solve()
 		if (flag == 0) {
 			time += L;
 		}
+		d = 1 - d;
+		R--;
 	}
 
 	return time;
@@ -111,14 +110,14 @@ int main()
 				event[d][di[d]].x = -1;
 				di[d]++;
 			}
-			event[1 - d][di[d]].t = t - L;
-			event[1 - d][di[d]].n = n;
-			event[1 - d][di[d]].x = 1;
-			di[d]++;
-			event[1 - d][di[d]].t = t + l;
-			event[1 - d][di[d]].n = n;
-			event[1 - d][di[d]].x = -1;
-			di[d]++;
+			event[1 - d][di[1 - d]].t = t - L;
+			event[1 - d][di[1 - d]].n = n;
+			event[1 - d][di[1 - d]].x = 1;
+			di[1 - d]++;
+			event[1 - d][di[1 - d]].t = t + l;
+			event[1 - d][di[1 - d]].n = n;
+			event[1 - d][di[1 - d]].x = -1;
+			di[1 - d]++;
 		}
 		sort(&event[0][0], &event[0][2 * Q], cmp);
 		sort(&event[1][0], &event[1][2 * Q], cmp);
