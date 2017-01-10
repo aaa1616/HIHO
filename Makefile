@@ -1,5 +1,5 @@
 TARGET = hiho
-OBJECTS = hiho_67.o
+OBJECTS = hiho_90.o
 CC = g++
 CPPFLAGS = -g -Wall
 
